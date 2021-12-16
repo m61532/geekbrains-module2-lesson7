@@ -3,10 +3,16 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.PasswordField?>
 <VBox fx:controller="ru.geekbrains.lesson7.Controller"
       xmlns:fx="http://javafx.com/fxml" alignment="center" minWidth="100" minHeight="150">
-    <TextArea fx:id="chatTextArea" VBox.vgrow="ALWAYS" editable="false"></TextArea>
-    <HBox minHeight="20" minWidth="100" alignment="BOTTOM_RIGHT">
+    <HBox fx:id="loginBox" VBox.vgrow="ALWAYS">
+        <TextField fx:id="loginField" promptText="Login"/>
+        <PasswordField fx:id="passwordField" promptText="Password"/>
+        <Button fx:id="Auth" defaultButton="true" onAction="#bthAuthClick" minWidth="50">Ok</Button>
+    </HBox>
+    <TextArea fx:id="chatTextArea" VBox.vgrow="ALWAYS" editable="false" visible="false"></TextArea>
+    <HBox fx:id="chatTextFieldWithButtons" minHeight="20" minWidth="100" alignment="BOTTOM_RIGHT" visible="false">
         <TextField fx:id="chatTextField" HBox.hgrow="ALWAYS"></TextField>
         <Button onAction="#sendMessage" alignment="CENTER" defaultButton="true" minWidth="50">Send</Button>
         <Button onAction="#clearTextField" alignment="CENTER" minWidth="50">Clear</Button>

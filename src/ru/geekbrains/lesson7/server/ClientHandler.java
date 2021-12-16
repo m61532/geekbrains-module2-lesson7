@@ -88,6 +88,7 @@ public class ClientHandler {
     protected void sendMessage(String message) {
         try {
             System.out.println("Server: Send message to " + nick);
+            System.out.println(message);
             dataOutputStream.writeUTF(message);
         } catch (IOException e) {
             e.printStackTrace();

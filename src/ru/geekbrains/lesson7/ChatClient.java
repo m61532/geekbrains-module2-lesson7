@@ -29,10 +29,13 @@ public class ChatClient {
                             final String[] split = authMessage.split(" ");
                             final String nick = split[1];
                             controller.addMessage("Успешная авторизация под ником " + nick);
+                            controller.setAuth(true);
                             break;
                         }
                     } catch (IOException e) {
                         e.printStackTrace();
+                    } finally {
+                        closeConnection();
                     }
                 }
                 while (true) {
@@ -51,6 +54,10 @@ public class ChatClient {
 
     public void sendMessage(String messageToSend) {
         try {
+            if ("/end".equals(messageToSend)){
+                controller.setAuth(false);
+                closeConnection();
+            }
             dataOutputStream.writeUTF(messageToSend);
         } catch (IOException e) {
             e.printStackTrace();

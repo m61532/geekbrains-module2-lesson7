@@ -17,7 +17,9 @@ public class SimpleAuthService implements AuthService {
     @Override
     public String getNickByLoginAndPassword(String login, String password) {
         for (UserData user : users){
-            if (login.equals(user.login) && password.equals(user.password)) return user.nick;
+            System.out.println(login +" "+ user.login + " " + login.equals(user.login));
+            System.out.println(password +" "+ user.password + " " + password.equals(user.password));
+            if (login.equals(user.login) & password.equals(user.password)) return user.nick;
         }
         return null;
     }
