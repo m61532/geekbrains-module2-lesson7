@@ -34,8 +34,6 @@ public class ChatClient {
                         }
                     } catch (IOException e) {
                         e.printStackTrace();
-                    } finally {
-                        closeConnection();
                     }
                 }
                 while (true) {
@@ -86,7 +84,5 @@ public class ChatClient {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
 }

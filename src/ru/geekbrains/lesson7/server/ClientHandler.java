@@ -67,19 +67,19 @@ public class ClientHandler {
     private void readMessages() {
         try {
             while (true) {
-                final String message = dataInputStream.readUTF();
-                if ("/end".equals(message)) {
-                    break;
+                    final String message = dataInputStream.readUTF();
+                    if ("/end".equals(message)) {
+                        break;
+                    }
+                    if (message.startsWith("/w")) {
+                        String[] s = message.split(" ");
+                        final String receiver = s[1];
+                        final String privateMessage = message.substring(receiver.length() + 9);
+                        server.privateMessage(nick, receiver, privateMessage);
+                    } else {
+                        server.broadcast(nick + "/: " + message);
+                    }
                 }
-                if (message.startsWith("/w")){
-                    String[] s = message.split(" ");
-                    final String receiver = s[1];
-                    final String privateMessage = message.substring(receiver.length() + 9);
-                    server.privateMessage(nick, receiver, privateMessage);
-                } else {
-                    server.broadcast(nick + "/: " + message);
-                }
-            }
         } catch (IOException e) {
             e.printStackTrace();
         }
