@@ -20,9 +20,9 @@ public class Controller {
     @FXML
     public HBox loginBox;
 
-    public Controller() {
-        client = new ChatClient(this);
-    }
+//    public Controller() {
+//        client = new ChatClient(this);
+//    }
 
     public void sendMessage(ActionEvent actionEvent) {
         Object source = (Button) actionEvent.getSource();
@@ -45,8 +45,7 @@ public class Controller {
     }
 
     public void bthAuthClick(ActionEvent actionEvent) {
-        System.out.println("/auth " + loginField.getText() + " " + passwordField.getText());
-        client.openConnection();
+        client = new ChatClient(this);
         client.sendMessage("/auth " + loginField.getText() + " " + passwordField.getText());
     }
 

@@ -39,6 +39,11 @@ public class ChatClient {
                 while (true) {
                     try {
                         final String incomingMessage = dataInputStream.readUTF();
+                        if ("/end".equals(incomingMessage)) {
+                            closeConnection();
+                            controller.setAuth(false);
+                            break;
+                        }
                         controller.addMessage(incomingMessage);
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -52,10 +57,6 @@ public class ChatClient {
 
     public void sendMessage(String messageToSend) {
         try {
-            if ("/end".equals(messageToSend)){
-                controller.setAuth(false);
-                closeConnection();
-            }
             dataOutputStream.writeUTF(messageToSend);
         } catch (IOException e) {
             e.printStackTrace();

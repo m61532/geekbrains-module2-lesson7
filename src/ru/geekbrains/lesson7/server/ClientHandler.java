@@ -69,6 +69,9 @@ public class ClientHandler {
             while (true) {
                     final String message = dataInputStream.readUTF();
                     if ("/end".equals(message)) {
+                        sendMessage("/end");
+                        closeConnection();
+                        server.broadcast("Пользователь " + nick + " вышел из чата");
                         break;
                     }
                     if (message.startsWith("/w")) {
